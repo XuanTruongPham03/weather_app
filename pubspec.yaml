@@ -42,14 +42,6 @@ dependencies:
   scrollable_positioned_list: ^0.3.8
   flutter_local_notifications: ^17.0.0
 
-# Uncomment this for publishing FLOSS variant
-# dependency_overrides:
-#   geolocator_android:
-#     git:
-#       url: https://github.com/Zverik/flutter-geolocator.git
-#       ref: floss
-#       path: geolocator_android
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

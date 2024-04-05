@@ -5,5 +5,6 @@ class Translation extends Translations {
   Map<String, Map<String, String>> get keys => {
         'ru_RU': {},
         'en_US': {},
+        'vi_VN': {},
       };
 }
