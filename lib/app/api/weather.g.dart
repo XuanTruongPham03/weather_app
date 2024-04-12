@@ -1,6 +1,9 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 part of 'weather.dart';
+// file name: weather.freezed.dart
+// có tác dụng tạo ra các class immutable từ class WeatherDataApi
+// và các class con của nó là Hourly và Daily
 
 // **************************************************************************
 // JsonSerializableGenerator
