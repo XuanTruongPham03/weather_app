@@ -115,30 +115,6 @@ class _SettingsPageState extends State<SettingsPage> {
                                 setState(() {});
                               },
                             ),
-                            SettingCard(
-                              elevation: 4,
-                              icon: const Icon(Iconsax.mobile),
-                              text: 'amoledTheme'.tr,
-                              switcher: true,
-                              value: settings.amoledTheme,
-                              onChange: (value) {
-                                themeController.saveOledTheme(value);
-                                MyApp.updateAppState(context,
-                                    newAmoledTheme: value);
-                              },
-                            ),
-                            SettingCard(
-                              elevation: 4,
-                              icon: const Icon(Iconsax.colorfilter),
-                              text: 'materialColor'.tr,
-                              switcher: true,
-                              value: settings.materialColor,
-                              onChange: (value) {
-                                themeController.saveMaterialTheme(value);
-                                MyApp.updateAppState(context,
-                                    newMaterialColor: value);
-                              },
-                            ),
                             const SizedBox(height: 10),
                           ],
                         ),
@@ -300,21 +276,6 @@ class _SettingsPageState extends State<SettingsPage> {
                             ),
                             SettingCard(
                               elevation: 4,
-                              icon: const Icon(Iconsax.cloud_notif),
-                              text: 'roundDegree'.tr,
-                              switcher: true,
-                              value: settings.roundDegree,
-                              onChange: (value) {
-                                settings.roundDegree = value;
-                                isar.writeTxnSync(
-                                    () => isar.settings.putSync(settings));
-                                MyApp.updateAppState(context,
-                                    newRoundDegree: value);
-                                setState(() {});
-                              },
-                            ),
-                            SettingCard(
-                              elevation: 4,
                               icon: const Icon(Iconsax.sun_1),
                               text: 'degrees'.tr,
                               dropdown: true,
@@ -328,30 +289,6 @@ class _SettingsPageState extends State<SettingsPage> {
                                   settings.degrees = newValue == 'celsius'.tr
                                       ? 'celsius'
                                       : 'fahrenheit';
-                                  isar.settings.putSync(settings);
-                                });
-                                await weatherController.deleteAll(false);
-                                await weatherController.setLocation();
-                                await weatherController.updateCacheCard(true);
-                                setState(() {});
-                              },
-                            ),
-                            SettingCard(
-                              elevation: 4,
-                              icon: const Icon(Iconsax.rulerpen),
-                              text: 'measurements'.tr,
-                              dropdown: true,
-                              dropdownName: settings.measurements.tr,
-                              dropdownList: <String>[
-                                'metric'.tr,
-                                'imperial'.tr
-                              ],
-                              dropdownCange: (String? newValue) async {
-                                isar.writeTxnSync(() {
-                                  settings.measurements =
-                                      newValue == 'metric'.tr
-                                          ? 'metric'
-                                          : 'imperial';
                                   isar.settings.putSync(settings);
                                 });
                                 await weatherController.deleteAll(false);
