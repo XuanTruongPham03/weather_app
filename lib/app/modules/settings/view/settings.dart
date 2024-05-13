@@ -393,7 +393,7 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             text: '${'project'.tr} GitHub',
             onPressed: () =>
-                urlLauncher('https://github.com/XuanTruongPham03/Rain'),
+                urlLauncher('https://github.com/XuanTruongPham03/weather_app'),
           ),
           const SizedBox(height: 10),
         ],
