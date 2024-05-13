@@ -1,4 +1,3 @@
-import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -26,8 +25,7 @@ ThemeData lightTheme(Color? color, ColorScheme? colorScheme) {
           brightness: Brightness.light,
           background: color,
           surface: baseLigth.colorScheme.background,
-        )
-        .harmonized(),
+        ),
     textTheme: GoogleFonts.ubuntuTextTheme(baseLigth.textTheme),
     appBarTheme: AppBarTheme(
       backgroundColor: color,
@@ -65,9 +63,8 @@ ThemeData lightTheme(Color? color, ColorScheme? colorScheme) {
       focusedBorder: InputBorder.none,
       enabledBorder: InputBorder.none,
     ),
-    indicatorColor: Colors.black,
   );
-}
+ }
 
 ThemeData darkTheme(Color? color, ColorScheme? colorScheme) {
   return baseDark.copyWith(
@@ -77,8 +74,7 @@ ThemeData darkTheme(Color? color, ColorScheme? colorScheme) {
           brightness: Brightness.dark,
           background: color,
           surface: baseDark.colorScheme.background,
-        )
-        .harmonized(),
+        ),
     textTheme: GoogleFonts.ubuntuTextTheme(baseDark.textTheme),
     appBarTheme: AppBarTheme(
       backgroundColor: color,
