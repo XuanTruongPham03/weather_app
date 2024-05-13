@@ -1,6 +1,3 @@
-// file name: controller.dart
-// có tác dụng quản lý dữ liệu và các hàm xử lý dữ liệu
-
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -26,9 +23,6 @@ import 'package:timezone/standalone.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'package:workmanager/workmanager.dart';
 
-// WeatherController class
-// Lớp này sẽ quản lý dữ liệu thời tiết
-// và các hàm xử lý dữ liệu
 class WeatherController extends GetxController {
   final isLoading = true.obs;
   final _district = ''.obs;
@@ -63,10 +57,6 @@ class WeatherController extends GetxController {
     super.onInit();
   }
 
-  // hàm determinePosition
-  // có tác dụng xác định vị trí hiện tại của thiết bị
-  // sử dụng thư viện Geolocator
-  // trả về vị trí dưới dạng Future<Position>
   Future<Position> determinePosition() async {
     LocationPermission permission;
 
@@ -86,15 +76,6 @@ class WeatherController extends GetxController {
         desiredAccuracy: LocationAccuracy.high);
   }
 
-  // hàm setLocation
-  // có tác dụng xác định vị trí của thiết bị
-  // nếu thiết bị không có kết nối internet
-  // thì sẽ hiển thị thông báo
-  // nếu thiết bị không bật dịch vụ vị trí
-  // thì sẽ hiển thị thông báo
-  // nếu thiết bị đã lưu vị trí trước đó
-  // thì sẽ lấy vị trí đó
-  // ngược lại sẽ lấy vị trí hiện tại
   Future<void> setLocation() async {
     if (settings.location) {
       await getCurrentLocation();
@@ -108,19 +89,10 @@ class WeatherController extends GetxController {
     }
   }
 
-  // hàm getCurrentLocation
-  // có tác dụng lấy vị trí hiện tại của thiết bị
-  // nếu thiết bị không có kết nối internet
-  // thì sẽ hiển thị thông báo
-  // nếu thiết bị không bật dịch vụ vị trí
-  // thì sẽ hiển thị thông báo
-  // nếu thiết bị đã lưu vị trí trước đó
-  // thì sẽ lấy vị trí đó
-  // ngược lại sẽ lấy vị trí hiện tại
   Future<void> getCurrentLocation() async {
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
 
-    if (!isOnline) {
+    if (!(await isOnline.value)) {
       showSnackBar(content: 'no_inter'.tr);
       await readCache();
       return;
@@ -164,7 +136,7 @@ class WeatherController extends GetxController {
     double lat, lon;
     String city, district;
 
-    if (!isOnline) {
+    if (!(await isOnline.value)) {
       showSnackBar(content: 'no_inter'.tr);
     }
 
@@ -192,7 +164,7 @@ class WeatherController extends GetxController {
 
   Future<void> getLocation(double latitude, double longitude, String district,
       String locality) async {
-    if (!isOnline) {
+    if (!(await isOnline.value)) {
       showSnackBar(content: 'no_inter'.tr);
       await readCache();
       return;
@@ -217,8 +189,6 @@ class WeatherController extends GetxController {
     await readCache();
   }
 
-  // hàm readCache
-  // có tác dụng đọc dữ liệu từ cache
   Future<void> readCache() async {
     MainWeatherCache? mainWeatherCache;
     LocationCache? locationCache;
@@ -281,7 +251,7 @@ class WeatherController extends GetxController {
   }
 
   Future<void> deleteCache() async {
-    if (!isOnline) {
+    if (!(await isOnline.value)) {
       return;
     }
 
@@ -297,7 +267,7 @@ class WeatherController extends GetxController {
   }
 
   Future<void> deleteAll(bool changeCity) async {
-    if (!isOnline) {
+    if (!(await isOnline.value)) {
       return;
     }
 
@@ -318,7 +288,7 @@ class WeatherController extends GetxController {
   // Card Weather
   Future<void> addCardWeather(
       double latitude, double longitude, String city, String district) async {
-    if (!isOnline) {
+    if (!(await isOnline.value)) {
       showSnackBar(content: 'no_inter'.tr);
       return;
     }
@@ -341,7 +311,7 @@ class WeatherController extends GetxController {
             .sortByIndex()
             .findAllSync();
 
-    if (!isOnline || weatherCard.isEmpty) {
+    if ((!(await isOnline.value)) || weatherCard.isEmpty) {
       return;
     }
 
@@ -397,7 +367,7 @@ class WeatherController extends GetxController {
   }
 
   Future<void> updateCard(WeatherCard weatherCard) async {
-    if (!isOnline) {
+    if (!(await isOnline.value)) {
       return;
     }
 

@@ -28,7 +28,8 @@ dependencies:
   flutter_glow: ^0.3.0
   url_launcher: ^6.2.5
   time_machine: ^0.9.17
-  dynamic_color: ^1.7.0
+  dynamic_color:
+    path: dynamic_color-1.7.0/
   path_provider: ^2.1.2
   json_annotation: ^4.8.1
   flutter_timezone: ^1.0.8

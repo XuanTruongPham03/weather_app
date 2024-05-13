@@ -1,74 +1,183 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:rain/app/data/weather.dart';
-import 'package:rain/app/modules/weather.dart';
+import 'package:rain/app/modules/geolocation.dart';
 import 'package:rain/app/widgets/button.dart';
 import 'package:rain/main.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class OnboardingPage extends StatefulWidget {
-  const OnboardingPage({super.key});
+class OnBoarding extends StatefulWidget {
+  const OnBoarding({super.key});
 
   @override
-  State<OnboardingPage> createState() => _OnboardingPageState();
+  State<OnBoarding> createState() => _OnBoardingState();
 }
 
-class _OnboardingPageState extends State<OnboardingPage> {
+class _OnBoardingState extends State<OnBoarding> {
+  late PageController pageController;
+  int pageIndex = 0;
+
+  @override
+  void initState() {
+    pageController = PageController(initialPage: 0);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
+
+  void onBoardHome() {
+    settings.onboard = true;
+    isar.writeTxnSync(() => isar.settings.putSync(settings));
+    Get.off(() => const SelectGeolocation(isStart: true),
+        transition: Transition.downToUp);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
-            Flexible(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'assets/images/weather.png',
-                    scale: 2,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    'Rain - ${'name'.tr}',
-                    style: context.theme.textTheme.headlineMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.85,
-                    child: Text(
-                      'description'.tr,
-                      style: context.theme.textTheme.bodyLarge,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ],
+            Expanded(
+              child: PageView.builder(
+                controller: pageController,
+                itemCount: data.length,
+                onPageChanged: (index) {
+                  setState(() {
+                    pageIndex = index;
+                  });
+                },
+                itemBuilder: (context, index) => OnboardContent(
+                  image: data[index].image,
+                  title: data[index].title,
+                  description: data[index].description,
+                ),
               ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ...List.generate(
+                    data.length,
+                    (index) => Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          child: DotIndicator(isActive: index == pageIndex),
+                        )),
+              ],
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
               child: MyTextButton(
-                buttonName: 'start'.tr,
-                onTap: () async {
-                  settings.onboard = true;
-                  isar.writeTxn(() async => isar.settings.put(settings));
-                  Get.off(
-                    () => const WeatherPage(),
-                    transition: Transition.downToUp,
-                  );
+                buttonName:
+                    pageIndex == data.length - 1 ? 'start'.tr : 'next'.tr,
+                onPressed: () {
+                  pageIndex == data.length - 1
+                      ? onBoardHome()
+                      : pageController.nextPage(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.ease,
+                        );
                 },
-                bgColor: context.theme.colorScheme.primaryContainer,
               ),
-            ),
+            )
           ],
         ),
       ),
+    );
+  }
+}
+
+class DotIndicator extends StatelessWidget {
+  const DotIndicator({
+    super.key,
+    this.isActive = false,
+  });
+
+  final bool isActive;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      height: 8,
+      width: 8,
+      decoration: BoxDecoration(
+        color: isActive
+            ? context.theme.colorScheme.secondary
+            : context.theme.colorScheme.secondaryContainer,
+        shape: BoxShape.circle,
+      ),
+    );
+  }
+}
+
+class Onboard {
+  final String image, title, description;
+
+  Onboard({
+    required this.image,
+    required this.title,
+    required this.description,
+  });
+}
+
+final List<Onboard> data = [
+  Onboard(
+      image: 'assets/icons/Rain.png',
+      title: 'name'.tr,
+      description: 'description'.tr),
+  Onboard(
+      image: 'assets/icons/Design.png',
+      title: 'name2'.tr,
+      description: 'description2'.tr),
+  Onboard(
+      image: 'assets/icons/Team.png',
+      title: 'name3'.tr,
+      description: 'description3'.tr),
+];
+
+class OnboardContent extends StatelessWidget {
+  const OnboardContent({
+    super.key,
+    required this.image,
+    required this.title,
+    required this.description,
+  });
+  final String image, title, description;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Flexible(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                image,
+                scale: 5,
+              ),
+              Text(
+                title,
+                style: context.textTheme.titleLarge
+                    ?.copyWith(fontWeight: FontWeight.w600),
+              ),
+              const SizedBox(height: 10),
+              SizedBox(
+                width: 300,
+                child: Text(
+                  description,
+                  style: context.textTheme.labelLarge?.copyWith(fontSize: 14),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
