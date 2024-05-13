@@ -5,27 +5,21 @@ class MyTextButton extends StatelessWidget {
   const MyTextButton({
     super.key,
     required this.buttonName,
-    required this.onTap,
-    required this.bgColor,
+    required this.onPressed,
   });
   final String buttonName;
-  final Function() onTap;
-  final Color bgColor;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 50,
       width: double.infinity,
-      decoration: BoxDecoration(
-        color: bgColor,
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: TextButton(
-        onPressed: onTap,
+      child: ElevatedButton(
+        onPressed: onPressed,
         child: Text(
           buttonName,
-          style: context.theme.textTheme.titleMedium,
+          style: context.textTheme.titleMedium,
         ),
       ),
     );

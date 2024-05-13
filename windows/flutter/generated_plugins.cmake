@@ -3,7 +3,8 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  isar_flutter_libs
+  connectivity_plus
+  dynamic_color
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST
