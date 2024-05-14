@@ -262,9 +262,9 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-  final lightMaterialTheme = lightTheme(lightColor, colorSchemeLight);
-  final darkMaterialTheme = darkTheme(darkColor, colorSchemeDark);
-  final darkMaterialThemeOled = darkTheme(oledColor, colorSchemeDark);
+    final lightMaterialTheme = lightTheme(lightColor, colorSchemeLight);
+    final darkMaterialTheme = darkTheme(darkColor, colorSchemeDark);
+    final darkMaterialThemeOled = darkTheme(oledColor, colorSchemeDark);
 
     return GetMaterialApp(
       themeMode: themeController.theme,

@@ -10,7 +10,7 @@ part 'weather.freezed.dart';
 part 'weather.g.dart';
 
 // WeatherDataApi class
-// Lớp này sẽ chứa dữ liệu thời tiết từ API
+// chứa dữ liệu thời tiết từ API
 // và trả về dữ liệu thời tiết dưới dạng Hourly và Daily
 // Nếu có lỗi, nó sẽ in ra lỗi đó
 @freezed
