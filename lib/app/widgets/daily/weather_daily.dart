@@ -125,19 +125,19 @@ class _WeatherDailyState extends State<WeatherDaily> {
               },
             ),
             const Divider(),
-            // InkWell(
-            //   splashColor: splashColor,
-            //   borderRadius: inkWellBorderRadius,
-            //   onTap: widget.onTap,
-            //   child: Padding(
-            //     padding: const EdgeInsets.symmetric(vertical: 10),
-            //     child: Text(
-            //       'weatherMore'.tr,
-            //       style: textTheme.titleMedium,
-            //       overflow: TextOverflow.ellipsis,
-            //     ),
-            //   ),
-            // ),
+            InkWell(
+              splashColor: splashColor,
+              borderRadius: inkWellBorderRadius,
+              onTap: widget.onTap,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Text(
+                  'weatherMore'.tr,
+                  style: textTheme.titleMedium,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
           ],
         ),
       ),

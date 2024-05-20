@@ -6,6 +6,8 @@ import 'package:rain/app/api/api.dart';
 import 'package:rain/app/api/city.dart';
 import 'package:rain/app/controller/controller.dart';
 import 'package:rain/app/data/weather.dart';
+import 'package:rain/app/modules/cards/view/list_weather_card.dart';
+import 'package:rain/app/modules/cards/widgets/create_card_weather.dart';
 import 'package:rain/app/modules/geolocation.dart';
 import 'package:rain/app/modules/main/view/weather.dart';
 import 'package:rain/app/modules/settings/view/settings.dart';
@@ -29,6 +31,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   final pages = [
     const WeatherPage(),
+    const ListWeatherCard(),
     const SettingsPage(),
   ];
 
@@ -189,6 +192,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       },
                     ),
               1 => Text(
+                  'cities'.tr,
+                  style: textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18,
+                  ),
+                ),
+              2 => Text(
                   'settings_full'.tr,
                   style: textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w600,
@@ -242,10 +252,24 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               NavigationDestination(
                 icon: const Icon(Iconsax.category),
                 selectedIcon: const Icon(Iconsax.category5),
-                label: 'settings'.tr,
+                label: 'settings_full'.tr,
               ),
             ],
           ),
+          floatingActionButton: tabIndex == 1
+              ? FloatingActionButton(
+                  onPressed: () => showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    enableDrag: false,
+                    builder: (BuildContext context) =>
+                        const CreateWeatherCard(),
+                  ),
+                  child: const Icon(
+                    Iconsax.add,
+                  ),
+                )
+              : null,
         ),
       ),
     );

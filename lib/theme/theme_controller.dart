@@ -10,10 +10,10 @@ class ThemeController extends GetxController {
           ? ThemeMode.dark
           : ThemeMode.light;
 
-  void saveOledTheme(bool isOled) {
-    settings.amoledTheme = isOled;
-    isar.writeTxnSync(() => isar.settings.putSync(settings));
-  }
+  // void saveOledTheme(bool isOled) {
+  //   settings.amoledTheme = isOled;
+  //   isar.writeTxnSync(() => isar.settings.putSync(settings));
+  // }
 
   void saveMaterialTheme(bool isMaterial) {
     settings.materialColor = isMaterial;

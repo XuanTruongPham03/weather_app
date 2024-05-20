@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -216,6 +216,42 @@ class _SettingsPageState extends State<SettingsPage> {
                             ),
                             SettingCard(
                               elevation: 4,
+                              icon: const Icon(Iconsax.notification_1),
+                              text: 'notifications'.tr,
+                              switcher: true,
+                              value: settings.notifications,
+                              onChange: (value) async {
+                                final resultExact =
+                                    await flutterLocalNotificationsPlugin
+                                        .resolvePlatformSpecificImplementation<
+                                            AndroidFlutterLocalNotificationsPlugin>()
+                                        ?.requestExactAlarmsPermission();
+                                final result = Platform.isIOS
+                                    ? await flutterLocalNotificationsPlugin
+                                        .resolvePlatformSpecificImplementation<
+                                            IOSFlutterLocalNotificationsPlugin>()
+                                        ?.requestPermissions()
+                                    : await flutterLocalNotificationsPlugin
+                                        .resolvePlatformSpecificImplementation<
+                                            AndroidFlutterLocalNotificationsPlugin>()
+                                        ?.requestNotificationsPermission();
+                                if (result != null && resultExact != null) {
+                                  isar.writeTxnSync(() {
+                                    settings.notifications = value;
+                                    isar.settings.putSync(settings);
+                                  });
+                                  if (value) {
+                                    weatherController.notlification(
+                                        weatherController.mainWeather);
+                                  } else {
+                                    flutterLocalNotificationsPlugin.cancelAll();
+                                  }
+                                  setState(() {});
+                                }
+                              },
+                            ),
+                            SettingCard(
+                              elevation: 4,
                               icon: const Icon(Iconsax.notification_status),
                               text: 'timeRange'.tr,
                               dropdown: true,
@@ -276,6 +312,24 @@ class _SettingsPageState extends State<SettingsPage> {
                             ),
                             SettingCard(
                               elevation: 4,
+                              icon: const Icon(Iconsax.cloud_notif),
+                              text: 'roundDegree'.tr,
+                              switcher: true,
+                              value: settings.roundDegree,
+                              onChange: (value) {
+                                settings.roundDegree = value;
+                                isar.writeTxnSync(
+                                  () => isar.settings.putSync(settings),
+                                );
+                                MyApp.updateAppState(
+                                  context,
+                                  newRoundDegree: value,
+                                );
+                                setState(() {});
+                              },
+                            ),
+                            SettingCard(
+                              elevation: 4,
                               icon: const Icon(Iconsax.sun_1),
                               text: 'degrees'.tr,
                               dropdown: true,
@@ -299,17 +353,25 @@ class _SettingsPageState extends State<SettingsPage> {
                             ),
                             SettingCard(
                               elevation: 4,
-                              icon: const Icon(Iconsax.clock),
-                              text: 'timeformat'.tr,
+                              icon: const Icon(Iconsax.rulerpen),
+                              text: 'measurements'.tr,
                               dropdown: true,
-                              dropdownName: settings.timeformat.tr,
-                              dropdownList: <String>['12'.tr, '24'.tr],
-                              dropdownCange: (String? newValue) {
+                              dropdownName: settings.measurements.tr,
+                              dropdownList: <String>[
+                                'metric'.tr,
+                                'imperial'.tr
+                              ],
+                              dropdownCange: (String? newValue) async {
                                 isar.writeTxnSync(() {
-                                  settings.timeformat =
-                                      newValue == '12'.tr ? '12' : '24';
+                                  settings.measurements =
+                                      newValue == 'metric'.tr
+                                          ? 'metric'
+                                          : 'imperial';
                                   isar.settings.putSync(settings);
                                 });
+                                await weatherController.deleteAll(false);
+                                await weatherController.setLocation();
+                                await weatherController.updateCacheCard(true);
                                 setState(() {});
                               },
                             ),

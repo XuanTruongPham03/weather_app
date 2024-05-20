@@ -131,14 +131,37 @@ class _WeatherPageState extends State<WeatherPage> {
                   ),
                 ),
               ),
+              SunsetSunrise(
+                timeSunrise: sunrise,
+                timeSunset: sunset,
+              ),
               DescContainer(
                 humidity: mainWeather.relativehumidity2M?[hourOfDay],
                 wind: mainWeather.windspeed10M?[hourOfDay],
                 visibility: mainWeather.visibility?[hourOfDay],
                 feels: mainWeather.apparentTemperature?[hourOfDay],
+                evaporation: mainWeather.evapotranspiration?[hourOfDay],
+                precipitation: mainWeather.precipitation?[hourOfDay],
+                direction: mainWeather.winddirection10M?[hourOfDay],
                 pressure: mainWeather.surfacePressure?[hourOfDay],
                 rain: mainWeather.rain?[hourOfDay],
+                cloudcover: mainWeather.cloudcover?[hourOfDay],
+                windgusts: mainWeather.windgusts10M?[hourOfDay],
+                uvIndex: mainWeather.uvIndex?[hourOfDay],
+                dewpoint2M: mainWeather.dewpoint2M?[hourOfDay],
+                precipitationProbability:
+                    mainWeather.precipitationProbability?[hourOfDay],
+                shortwaveRadiation: mainWeather.shortwaveRadiation?[hourOfDay],
               ),
+              WeatherDaily(
+                weatherData: weatherCard,
+                onTap: () => Get.to(
+                  () => WeatherMore(
+                    weatherData: weatherCard,
+                  ),
+                  transition: Transition.downToUp,
+                ),
+              )
             ],
           );
         }),

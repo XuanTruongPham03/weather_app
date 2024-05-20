@@ -6,12 +6,6 @@ import 'package:rain/app/api/weather.dart';
 import 'package:rain/app/data/weather.dart';
 import 'package:rain/main.dart';
 
-// WeatherAPI class
-// Lớp này sẽ gửi yêu cầu API để lấy dữ liệu thời tiết
-// và trả về dữ liệu thời tiết dưới dạng MainWeatherCache
-// hoặc WeatherCard
-// Nếu có lỗi, nó sẽ in ra lỗi đó
-// và ném nó ra ngoài để xử lý ở nơi gọi
 class WeatherAPI {
   final Dio dio = Dio()
     ..options.baseUrl = 'https://api.open-meteo.com/v1/forecast?';
@@ -78,9 +72,6 @@ class WeatherAPI {
     }
   }
 
-  // Lấy dữ liệu thời tiết cho một thành phố cụ thể
-  // và trả về dữ liệu thời tiết dưới dạng WeatherCard 
-  // Nếu có lỗi, nó sẽ in ra lỗi đó
   Future<WeatherCard> getWeatherCard(double? lat, double? lon, String city,
       String district, String timezone) async {
     String url =
@@ -147,9 +138,6 @@ class WeatherAPI {
     }
   }
 
-  // Lấy dữ liệu các thành phố từ API
-  // và trả về danh sách các thành phố
-  // Nếu có lỗi, nó sẽ in ra lỗi đó
   Future<Iterable<Result>> getCity(String query, Locale? locale) async {
     final url =
         'https://geocoding-api.open-meteo.com/v1/search?name=$query&count=5&language=${locale?.languageCode}&format=json';

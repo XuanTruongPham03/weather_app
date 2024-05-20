@@ -1,6 +1,3 @@
-// File: weather.dart
-// file này định nghĩa các class về dữ liệu thời tiết 
-// và cài đặt Isar để lưu trữ dữ liệu thời tiết
 import 'package:isar/isar.dart';
 
 part 'weather.g.dart';

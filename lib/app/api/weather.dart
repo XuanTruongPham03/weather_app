@@ -1,18 +1,10 @@
-// file name: weather.dart
-// có tác dụng tạo ra các class immutable từ class WeatherData
-// và các class con của nó là Hourly và Daily
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 //ignore_for_file: invalid_annotation_target
 
-part 'weather.freezed.dart'; 
+part 'weather.freezed.dart';
 part 'weather.g.dart';
 
-// WeatherDataApi class
-// chứa dữ liệu thời tiết từ API
-// và trả về dữ liệu thời tiết dưới dạng Hourly và Daily
-// Nếu có lỗi, nó sẽ in ra lỗi đó
 @freezed
 class WeatherDataApi with _$WeatherDataApi {
   const factory WeatherDataApi({
@@ -25,25 +17,6 @@ class WeatherDataApi with _$WeatherDataApi {
       _$WeatherDataApiFromJson(json);
 }
 
-// Hourly: lớp này sẽ chứa dữ liệu thời tiết theo giờ
-// @param time thời gian
-// @param weatherCode mã thời tiết
-// @param temperature2M nhiệt độ
-// @param apparentTemperature cảm giác như
-// @param precipitation lượng mưa
-// @param rain mưa
-// @param relativeHumidity2M độ ẩm tương đối
-// @param surfacePressure áp suất bề mặt
-// @param visibility tầm nhìn
-// @param evapotranspiration hơi nước
-// @param windSpeed10M tốc độ gió
-// @param windDirection10M hướng gió
-// @param windGusts10M gió giật
-// @param cloudCover mây
-// @param uvIndex chỉ số UV
-// @param dewpoint2M điểm sương
-// @param precipitationProbability xác suất mưa
-// @param shortwaveRadiation bức xạ ngắn
 @freezed
 class Hourly with _$Hourly {
   const factory Hourly({
@@ -74,22 +47,6 @@ class Hourly with _$Hourly {
 List<DateTime> _dateTimeFromJson(List<dynamic>? json) =>
     json?.map((x) => DateTime.parse(x)).toList() ?? [];
 
-// Daily: lớp này sẽ chứa dữ liệu thời tiết theo ngày
-// @param time thời gian
-// @param weatherCode mã thời tiết
-// @param temperature2MMax nhiệt độ tối đa
-// @param temperature2MMin nhiệt độ tối thiểu
-// @param apparentTemperatureMax cảm giác như tối đa
-// @param apparentTemperatureMin cảm giác như tối thiểu
-// @param precipitationSum lượng mưa
-// @param sunrise bình minh
-// @param sunset hoàng hôn
-// @param precipitationProbabilityMax xác suất mưa tối đa
-// @param windSpeed10MMax tốc độ gió tối đa
-// @param windGusts10MMax gió giật tối đa
-// @param uvIndexMax chỉ số UV tối đa
-// @param rainSum lượng mưa
-// @param windDirection10MDominant hướng gió
 @freezed
 class Daily with _$Daily {
   const factory Daily({

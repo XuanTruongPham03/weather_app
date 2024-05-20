@@ -5,14 +5,14 @@ import 'package:rain/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class OnBoarding extends StatefulWidget {
-  const OnBoarding({super.key});
+class OnBording extends StatefulWidget {
+  const OnBording({super.key});
 
   @override
-  State<OnBoarding> createState() => _OnBoardingState();
+  State<OnBording> createState() => _OnBordingState();
 }
 
-class _OnBoardingState extends State<OnBoarding> {
+class _OnBordingState extends State<OnBording> {
   late PageController pageController;
   int pageIndex = 0;
 

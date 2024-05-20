@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
-//import 'package:dynamic_color/dynamic_color.dart';
+import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -244,16 +244,16 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    amoledTheme = settings.amoledTheme;
+    //amoledTheme = settings.amoledTheme;
     materialColor = settings.materialColor;
     roundDegree = settings.roundDegree;
     locale = Locale(
         settings.language!.substring(0, 2), settings.language!.substring(3));
     timeRange = settings.timeRange ?? 1;
-    timeStart = settings.timeStart ?? '09:00';
-    timeEnd = settings.timeEnd ?? '21:00';
-    widgetBackgroundColor = settings.widgetBackgroundColor ?? '';
-    widgetTextColor = settings.widgetTextColor ?? '';
+    // timeStart = settings.timeStart ?? '09:00';
+    // timeEnd = settings.timeEnd ?? '21:00';
+    // widgetBackgroundColor = settings.widgetBackgroundColor ?? '';
+    // widgetTextColor = settings.widgetTextColor ?? '';
     if (Platform.isAndroid) {
       HomeWidget.setAppGroupId(appGroupId);
     }
@@ -262,29 +262,53 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    final lightMaterialTheme = lightTheme(lightColor, colorSchemeLight);
-    final darkMaterialTheme = darkTheme(darkColor, colorSchemeDark);
-    final darkMaterialThemeOled = darkTheme(oledColor, colorSchemeDark);
+    return DynamicColorBuilder(
+      builder: (lightColorScheme, darkColorScheme) {
+        final lightMaterialTheme =
+            lightTheme(lightColorScheme?.surface, lightColorScheme);
+        final darkMaterialTheme =
+            darkTheme(darkColorScheme?.surface, darkColorScheme);
+        final darkMaterialThemeOled = darkTheme(oledColor, darkColorScheme);
 
-    return GetMaterialApp(
-      themeMode: themeController.theme,
-      theme: materialColor ? lightMaterialTheme : lightTheme(lightColor, colorSchemeLight),
-      darkTheme: amoledTheme ? (materialColor ? darkMaterialThemeOled : darkTheme(oledColor, colorSchemeDark)) : (materialColor ? darkMaterialTheme : darkTheme(darkColor, colorSchemeDark)),
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      translations: Translation(),
-      locale: locale,
-      fallbackLocale: const Locale('vi', 'VN'),
-      supportedLocales: appLanguages.map((e) => e['locale'] as Locale).toList(),
-      debugShowCheckedModeBanner: false,
-      home: settings.onboard
-        ? (locationCache.city == null) || (locationCache.district == null) || (locationCache.lat == null) || (locationCache.lon == null)
-          ? const SelectGeolocation(isStart: true)
-          : const HomePage()
-        : const OnBoarding(),
+        return GetMaterialApp(
+          themeMode: themeController.theme,
+          theme: materialColor
+              ? lightColorScheme != null
+                  ? lightMaterialTheme
+                  : lightTheme(lightColor, colorSchemeLight)
+              : lightTheme(lightColor, colorSchemeLight),
+          darkTheme: amoledTheme
+              ? materialColor
+                  ? darkColorScheme != null
+                      ? darkMaterialThemeOled
+                      : darkTheme(oledColor, colorSchemeDark)
+                  : darkTheme(oledColor, colorSchemeDark)
+              : materialColor
+                  ? darkColorScheme != null
+                      ? darkMaterialTheme
+                      : darkTheme(darkColor, colorSchemeDark)
+                  : darkTheme(darkColor, colorSchemeDark),
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          translations: Translation(),
+          locale: locale,
+          fallbackLocale: const Locale('vi', 'VN'),
+          supportedLocales:
+              appLanguages.map((e) => e['locale'] as Locale).toList(),
+          debugShowCheckedModeBanner: false,
+          home: settings.onboard
+              ? (locationCache.city == null) ||
+                      (locationCache.district == null) ||
+                      (locationCache.lat == null) ||
+                      (locationCache.lon == null)
+                  ? const SelectGeolocation(isStart: true)
+                  : const HomePage()
+              : const OnBording(),
+        );
+      },
     );
   }
 }

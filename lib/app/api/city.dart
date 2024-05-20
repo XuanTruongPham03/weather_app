@@ -1,12 +1,3 @@
-// lấy dữ liệu các thành phố từ API
-
-
-//  CityApi
-//  @param results danh sách các thành phố.
-//  @param admin1 tên Quận
-//  @param name tên thành phố
-//  @param latitude vĩ độ
-//  @param longitude kinh độ
 class CityApi {
   CityApi({
     required this.results,
@@ -21,11 +12,6 @@ class CityApi {
       );
 }
 
-// Result
-// @param admin1 tên Quận
-// @param name tên thành phố
-// @param latitude vĩ độ
-// @param longitude kinh độ
 class Result {
   Result({
     required this.admin1,
