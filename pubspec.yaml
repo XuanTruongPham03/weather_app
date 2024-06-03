@@ -23,9 +23,8 @@ dependencies:
   iconsax: ^0.0.8
   timezone: ^0.9.3
   geocoding: ^3.0.0
-  geolocator: 
-    version: ^12.0.0
-    path: geolocator-12.0.0/
+  geolocator: ^12.0.0
+    # path: geolocator-12.0.0/
   home_widget: ^0.6.0
   workmanager: ^0.5.2
   google_fonts: ^6.2.1
@@ -35,7 +34,6 @@ dependencies:
   url_launcher: ^6.2.6
   time_machine: ^0.9.17
   dynamic_color: 
-    version: ^1.7.0
     path: dynamic_color-1.7.0/
   path_provider: ^2.1.3
   json_annotation: ^4.9.0
