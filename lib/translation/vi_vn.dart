@@ -25,7 +25,7 @@ class ViVn {
         'rain': 'Mưa',
         'clear_sky': 'Trời quang đãng',
         'cloudy': 'Có mây',
-        'overcast': 'U ám',
+        'overcast': 'Nhiều mây',
         'fog': 'Sương mù',
         'drizzle': 'Mưa phùn',
         'drizzling_rain': 'Mưa phùn lạnh giá',

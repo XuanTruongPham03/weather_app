@@ -109,12 +109,12 @@ class _ListWeatherCardState extends State<ListWeatherCard> {
                             .deleteCardWeather(weatherCardList);
                       },
                       child: GestureDetector(
-                        // onTap: () => Get.to(
-                        //   () => InfoWeatherCard(
-                        //     weatherCard: weatherCardList,
-                        //   ),
-                        //   transition: Transition.downToUp,
-                        // ),
+                        onTap: () => Get.to(
+                          () => InfoWeatherCard(
+                            weatherCard: weatherCardList,
+                          ),
+                          transition: Transition.downToUp,
+                        ),
                         child: WeatherCardContainer(
                           time: weatherCardList.time!,
                           timeDaily: weatherCardList.timeDaily!,
