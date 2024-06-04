@@ -22,7 +22,7 @@
 </div>
 
 ## Screenshots
-<img src="/assets/sreenshots/Home.png" widtg="200"><img src="/assets/sreenshots/InfoWeather.png" widtg="200"><img src="/assets/sreenshots/Cities.png" widtg="200"><img src="/assets/sreenshots/Setting.png" widtg="200">
+<img src="/assets/sreenshots/Home.png" width="200"><img src="/assets/sreenshots/InfoWeather.png" width="200"><img src="/assets/sreenshots/Cities.png" width="200"><img src="/assets/sreenshots/Setting.png" width="200">
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
