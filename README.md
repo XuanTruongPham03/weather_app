@@ -22,13 +22,14 @@
 </div>
 
 ## Screenshots
-<div style="display:flex;">
-  <img src="/assets/sreenshots/Home.png" width="25%" style="margin-right: 5px;">
-  <img src="/assets/sreenshots/InfoWeather.png" width="25%" style="margin-right: 5px;">
-  <img src="/assets/sreenshots/Cities.png" width="25%" style="margin-right: 5px;">
-  <img src="/assets/sreenshots/Setting.png" width="25%">
+<div style="display:flex; justify-content: center; align-items: center;">
+  <img src="/assets/sreenshots/Home.png" width="24%" style="margin-right: 5px;">
+  <img src="/assets/sreenshots/InfoWeather.png" width="24%" style="margin-right: 5px;">
+  <img src="/assets/sreenshots/Cities.png" width="24%" style="margin-right: 5px;">
+  <img src="/assets/sreenshots/Setting.png" width="24%">
 </div>
 
+</br>
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
