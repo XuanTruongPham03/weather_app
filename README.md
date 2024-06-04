@@ -22,7 +22,6 @@
 </div>
 
 ## Screenshots
-<<<<<<< HEAD
 <div style="display:flex;">
   <img src="/assets/sreenshots/Home.png" width="25%" style="margin-right: 5px;">
   <img src="/assets/sreenshots/InfoWeather.png" width="25%" style="margin-right: 5px;">
@@ -30,9 +29,6 @@
   <img src="/assets/sreenshots/Setting.png" width="25%">
 </div>
 
-=======
-<img src="/assets/sreenshots/Home.png" width="25%"> <img src="/assets/sreenshots/InfoWeather.png" width="25%"> <img src="/assets/sreenshots/Cities.png" width="25%"> <img src="/assets/sreenshots/Setting.png" width="25%">
->>>>>>> 909174b3628a4f547543c474f1aaef631891a03e
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
