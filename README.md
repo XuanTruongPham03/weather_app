@@ -23,7 +23,7 @@
 
 ## Screenshots
 <div style="display:flex; justify-content: center; align-items: center;">
-  <img src="/assets/sreenshots/Home.png" width="24%" style="margin-right: 5px;">
+  <img src="/assets/sreenshots/Dark.png" width="24%" style="margin-right: 5px;">
   <img src="/assets/sreenshots/Forecast.png" width="24%" style="margin-right: 5px;">
   <img src="/assets/sreenshots/Cities.png" width="24%" style="margin-right: 5px;">
   <img src="/assets/sreenshots/Setting.png" width="24%">
@@ -91,7 +91,7 @@ We fetch weather data from [Open-Meteo](https://open-meteo.com/en/docs) and use 
 <!-- INSTALLATION -->
 ## Installation
 <a name="installation"></a>
-To install and run DIJA on your local machine, follow these steps:
+To install and run the application on your local machine, follow these steps:
 
 1. Clone the repository:
 ```shell
