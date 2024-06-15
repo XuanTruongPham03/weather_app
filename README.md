@@ -97,11 +97,15 @@ To install and run the application on your local machine, follow these steps:
 ```shell
 git clone https://github.com/XuanTruongPham03/weather_app.git
 ```
-2. Generate necessary code files for the application:
+2. Install all necessary packages and dependencies for the application:
+```shell
+flutter pub get
+```
+3. Generate necessary code files for the application:
 ```shell
 dart run build_runner build
 ```
-3. Build and Run the program:
+4. Build and Run the program:
 ```shell
 flutter run
 ```
