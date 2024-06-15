@@ -10,7 +10,7 @@
 
   <p align="center">
     Get ready for any forecast. 🌦️ </br>   
-    <a href="https://github.com/XuanTruongPham03/weather_app"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/XuanTruongPham03/weather_app/blob/main/README.md"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://photos.app.goo.gl/hwAZzYzYYKSqKoTTA">View Demo</a>
@@ -57,6 +57,7 @@
 <a name="about"></a>
 My Weather App offers real-time weather updates, hourly forecasts, and week-long outlooks, ensuring you're always prepared. Customize your experience with language, measurement, and time options, and stay informed with offline access and notifications. Enjoy a beautiful design and stay ahead of the weather effortlessly!
 
+_For more details, please refer to the [Documentation](https://drive.google.com/file/d/1bnTaLfkq9i2T5BmvuVpeTjt6mCatke2s/view)_
 ### Built with
 <a name="built-with"></a>
 [![Flutter](https://img.shields.io/badge/Flutter-3.22.1-1389FD?logo=flutter&logoColor=white)](https://flutter.dev/)
