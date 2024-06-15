@@ -13,7 +13,7 @@
     <a href="https://github.com/XuanTruongPham03/weather_app"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="">View Demo</a>
+    <a href="https://photos.app.goo.gl/hwAZzYzYYKSqKoTTA">View Demo</a>
     ·
     <a href="https://github.com/XuanTruongPham03/weather_app/issues">Report Bug</a>
     ·
