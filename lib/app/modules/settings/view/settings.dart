@@ -277,6 +277,118 @@ class _SettingsPageState extends State<SettingsPage> {
                                 }
                               },
                             ),
+                                                        SettingCard(
+                              elevation: 4,
+                              icon: const Icon(Iconsax.timer_start),
+                              text: 'timeStart'.tr,
+                              info: true,
+                              infoSettings: true,
+                              infoWidget: _TextInfo(
+                                info: settings.timeformat == '12'
+                                    ? DateFormat.jm(locale.languageCode).format(
+                                        DateFormat.Hm(locale.languageCode)
+                                            .parse(weatherController
+                                                .timeConvert(timeStart)
+                                                .format(context)))
+                                    : DateFormat.Hm(locale.languageCode).format(
+                                        DateFormat.Hm(locale.languageCode)
+                                            .parse(weatherController
+                                                .timeConvert(timeStart)
+                                                .format(context))),
+                              ),
+                              onPressed: () async {
+                                final TimeOfDay? timeStartPicker =
+                                    await showTimePicker(
+                                  context: context,
+                                  initialTime:
+                                      weatherController.timeConvert(timeStart),
+                                  builder: (context, child) {
+                                    final Widget mediaQueryWrapper = MediaQuery(
+                                      data: MediaQuery.of(context).copyWith(
+                                        alwaysUse24HourFormat:
+                                            settings.timeformat == '12'
+                                                ? false
+                                                : true,
+                                      ),
+                                      child: child!,
+                                    );
+                                    return mediaQueryWrapper;
+                                  },
+                                );
+                                if (timeStartPicker != null) {
+                                  isar.writeTxnSync(() {
+                                    settings.timeStart =
+                                        timeStartPicker.format(context);
+                                    isar.settings.putSync(settings);
+                                  });
+                                  if (!context.mounted) return;
+                                  MyApp.updateAppState(context,
+                                      newTimeStart:
+                                          timeStartPicker.format(context));
+                                  if (settings.notifications) {
+                                    flutterLocalNotificationsPlugin.cancelAll();
+                                    weatherController.notlification(
+                                        weatherController.mainWeather);
+                                  }
+                                }
+                              },
+                            ),
+                            SettingCard(
+                              elevation: 4,
+                              icon: const Icon(Iconsax.timer_pause),
+                              text: 'timeEnd'.tr,
+                              info: true,
+                              infoSettings: true,
+                              infoWidget: _TextInfo(
+                                info: settings.timeformat == '12'
+                                    ? DateFormat.jm(locale.languageCode).format(
+                                        DateFormat.Hm(locale.languageCode)
+                                            .parse(weatherController
+                                                .timeConvert(timeEnd)
+                                                .format(context)))
+                                    : DateFormat.Hm(locale.languageCode).format(
+                                        DateFormat.Hm(locale.languageCode)
+                                            .parse(weatherController
+                                                .timeConvert(timeEnd)
+                                                .format(context))),
+                              ),
+                              onPressed: () async {
+                                final TimeOfDay? timeEndPicker =
+                                    await showTimePicker(
+                                  context: context,
+                                  initialTime:
+                                      weatherController.timeConvert(timeEnd),
+                                  builder: (context, child) {
+                                    final Widget mediaQueryWrapper = MediaQuery(
+                                      data: MediaQuery.of(context).copyWith(
+                                        alwaysUse24HourFormat:
+                                            settings.timeformat == '12'
+                                                ? false
+                                                : true,
+                                      ),
+                                      child: child!,
+                                    );
+                                    return mediaQueryWrapper;
+                                  },
+                                );
+                                if (timeEndPicker != null) {
+                                  isar.writeTxnSync(() {
+                                    settings.timeEnd =
+                                        timeEndPicker.format(context);
+                                    isar.settings.putSync(settings);
+                                  });
+                                  if (!context.mounted) return;
+                                  MyApp.updateAppState(context,
+                                      newTimeEnd:
+                                          timeEndPicker.format(context));
+                                  if (settings.notifications) {
+                                    flutterLocalNotificationsPlugin.cancelAll();
+                                    weatherController.notlification(
+                                        weatherController.mainWeather);
+                                  }
+                                }
+                              },
+                            ),
                             const SizedBox(height: 10),
                           ],
                         ),
@@ -372,6 +484,22 @@ class _SettingsPageState extends State<SettingsPage> {
                                 await weatherController.deleteAll(false);
                                 await weatherController.setLocation();
                                 await weatherController.updateCacheCard(true);
+                                setState(() {});
+                              },
+                            ),
+                            SettingCard(
+                              elevation: 4,
+                              icon: const Icon(Iconsax.clock),
+                              text: 'timeformat'.tr,
+                              dropdown: true,
+                              dropdownName: settings.timeformat.tr,
+                              dropdownList: <String>['12'.tr, '24'.tr],
+                              dropdownCange: (String? newValue) {
+                                isar.writeTxnSync(() {
+                                  settings.timeformat =
+                                      newValue == '12'.tr ? '12' : '24';
+                                  isar.settings.putSync(settings);
+                                });
                                 setState(() {});
                               },
                             ),

@@ -48,6 +48,27 @@ String widgetTextColor = '';
 final List appLanguages = [
   {'name': 'Tiếng Việt', 'locale': const Locale('vi', 'VN')},
   {'name': 'English', 'locale': const Locale('en', 'US')},
+  {'name': 'বাংলা', 'locale': const Locale('bn', 'IN')},
+  {'name': 'Čeština', 'locale': const Locale('cs', 'CZ')},
+  {'name': 'Dansk', 'locale': const Locale('da', 'DK')},
+  {'name': 'Deutsch', 'locale': const Locale('de', 'DE')},
+  {'name': 'Español', 'locale': const Locale('es', 'ES')},
+  {'name': 'Français', 'locale': const Locale('fr', 'FR')},
+  {'name': 'हिन्दी', 'locale': const Locale('hi', 'IN')},
+  {'name': 'Magyar', 'locale': const Locale('hu', 'HU')},
+  {'name': 'Italiano', 'locale': const Locale('it', 'IT')},
+  {'name': 'فارسی', 'locale': const Locale('fa', 'IR')},
+  {'name': 'ქართული', 'locale': const Locale('ka', 'GE')},
+  {'name': 'Nederlands', 'locale': const Locale('nl', 'NL')},
+  {'name': 'Polski', 'locale': const Locale('pl', 'PL')},
+  {'name': 'Português (Brasil)', 'locale': const Locale('pt', 'BR')},
+  {'name': 'Română', 'locale': const Locale('ro', 'RO')},
+  {'name': 'Русский', 'locale': const Locale('ru', 'RU')},
+  {'name': 'Slovenčina', 'locale': const Locale('sk', 'SK')},
+  {'name': 'Türkçe', 'locale': const Locale('tr', 'TR')},
+  {'name': 'اردو', 'locale': const Locale('ur', 'PK')},
+  {'name': '中文(简体)', 'locale': const Locale('zh', 'CN')},
+  {'name': '中文(繁體)', 'locale': const Locale('zh', 'TW')},
 ];
 
 const String appGroupId = 'DARK NIGHT';
